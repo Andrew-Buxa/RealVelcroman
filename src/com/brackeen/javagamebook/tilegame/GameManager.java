@@ -98,7 +98,7 @@ public class GameManager extends GameCore {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				paused =!paused;
+				pause.press();
 			}
         	
         });
@@ -119,9 +119,10 @@ public class GameManager extends GameCore {
         pauseMenu.setSize(pauseMenu.getPreferredSize());
         
         
+        
         // Center the pause menu
-        pauseMenu.setLocation((screen.getWidth() - pauseMenu.getWidth()) / 2,
-        		(screen.getHeight() - pauseMenu.getHeight()) / 2);
+//        pauseMenu.setLocation((screen.getWidth() - pauseMenu.getWidth()) / 2,
+//        		(screen.getHeight() - pauseMenu.getHeight()) / 2);
         
         screen.getFullScreenWindow().getLayeredPane().add(pauseMenu,JLayeredPane.MODAL_LAYER);
         
@@ -150,7 +151,7 @@ public class GameManager extends GameCore {
 
         inputManager = new InputManager(
             screen.getFullScreenWindow());
-        inputManager.setCursor(InputManager.INVISIBLE_CURSOR);
+        //inputManager.setCursor(InputManager.INVISIBLE_CURSOR);
 
         inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
         inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
@@ -199,6 +200,9 @@ public class GameManager extends GameCore {
     public void draw(Graphics2D g) {
         renderer.draw(g, map,
             screen.getWidth(), screen.getHeight());
+        if (paused) {
+        	pauseMenu.paint(g);
+        }
        
     }
 
