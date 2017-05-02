@@ -80,6 +80,7 @@ public class TileMapRenderer {
     {
         Sprite player = map.getPlayer();
         int mapWidth = tilesToPixels(map.getWidth());
+        int mapHeight = tilesToPixels(map.getHeight());
 
         // get the scrolling position of the map
         // based on player's position
@@ -91,6 +92,10 @@ public class TileMapRenderer {
         // get the y offset to draw all sprites and tiles
         int offsetY = screenHeight -
             tilesToPixels(map.getHeight());
+        
+        int offsetY2 = screenHeight / 2 - Math.round(player.getY()) - TILE_SIZE;
+        offsetY2 = Math.min(offsetY2, 0);
+        offsetY2 = Math.max(offsetY2, screenHeight - mapHeight);
 
         // draw black background, if needed
         if (background == null ||
@@ -107,7 +112,7 @@ public class TileMapRenderer {
                 (screenWidth - mapWidth);
             int y = screenHeight - background.getHeight(null);
 
-            g.drawImage(background, x, y, null);
+            g.drawImage(map.getBackground(), x, y, null);
         }
 
         // draw the visible tiles
@@ -120,7 +125,7 @@ public class TileMapRenderer {
                 if (image != null) {
                     g.drawImage(image,
                         tilesToPixels(x) + offsetX,
-                        tilesToPixels(y) + offsetY,
+                        tilesToPixels(y) + offsetY2,
                         null);
                 }
             }
@@ -129,7 +134,7 @@ public class TileMapRenderer {
         // draw player
         g.drawImage(player.getImage(),
             Math.round(player.getX()) + offsetX,
-            Math.round(player.getY()) + offsetY,
+            Math.round(player.getY()) + offsetY2,
             null);
 
         // draw sprites
@@ -137,7 +142,7 @@ public class TileMapRenderer {
         while (i.hasNext()) {
             Sprite sprite = (Sprite)i.next();
             int x = Math.round(sprite.getX()) + offsetX;
-            int y = Math.round(sprite.getY()) + offsetY;
+            int y = Math.round(sprite.getY()) + offsetY2;
             g.drawImage(sprite.getImage(), x, y, null);
 
             // wake up the creature when it's on screen

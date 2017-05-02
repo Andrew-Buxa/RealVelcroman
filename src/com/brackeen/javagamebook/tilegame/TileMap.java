@@ -17,6 +17,7 @@ public class TileMap {
     private Image[][] tiles;
     private LinkedList sprites;
     private Sprite player;
+    private Image background;
 
     /**
         Creates a new TileMap with the specified width and
@@ -33,6 +34,14 @@ public class TileMap {
     */
     public int getWidth() {
         return tiles.length;
+    }
+    
+    public Image getBackground() {
+    	return background;
+    }
+    
+    public void setBackground(Image br) {
+    	this.background = br;
     }
 
 

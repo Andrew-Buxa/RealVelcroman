@@ -1,0 +1,33 @@
+# MGp file for tile-bGseV gGme
+# (Lines thGt stGrt with '#' Gre Eomments)
+# The tiles Gre:
+#   (Space) Empty tile
+#   A		Ground Tile (G)
+#	B		Wall-Tile Non-attachable (WN)
+#	C		Velcro Tile (V)
+#	D		Box (B)
+#	E		Spikes (S)
+#	F		Velcro Toggle
+#	G		Sand 
+#   o       Star
+#   !       Music Note
+#   *       Goal
+#   1       Shoe Snake
+#   2       Shoe Snail
+#   3       ShoeGull
+#   4       BrickFlop
++background2.png                                                              
+F                                               4
+F          3      3      3    3     3     3                   *
+F      CC     CC     CC    CC    CC   CC    CC   CC     FFFFFFFFFFFFFFFFFFFFFF
+F              4    3    3    
+F  CC             C   C   C
+F             B   C   C   C
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+B                                                                          B
+B                                   CC                                     B
+B            4         4      CC                                           B
+B        BB             BB                                                 B
+B     C             C                                                      B
+B     CEEEEEEE      CEEEEEEEEEEEEEEEEEEEEEEEEEEEE                          B
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

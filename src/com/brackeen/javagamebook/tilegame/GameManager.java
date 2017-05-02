@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
@@ -52,7 +53,8 @@ public class GameManager extends GameCore {
     private GameAction moveRight;
     private GameAction jump;
     private GameAction pause;
-    private GameAction exit;
+    private GameAction rules;
+    private GameAction options;
 
 	private boolean paused;
 
@@ -110,8 +112,33 @@ public class GameManager extends GameCore {
 				stop();
 			}
         });
+        
+        JButton rules = new JButton("Rules");
+        rules.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(pauseMenu, "Move around and stuff");
+				
+			}
+        	
+        });
+        JButton options = new JButton("Options");
+        options.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(pauseMenu, "Hello");
+			}
+        	
+        });
         pauseMenu.add(resume);
+        pauseMenu.add(rules);
+        pauseMenu.add(options);
         pauseMenu.add(exit);
+        
         Border border = 
         		BorderFactory.createLineBorder(Color.black);
         pauseMenu.setBorder(border);
@@ -173,6 +200,8 @@ public class GameManager extends GameCore {
         	//inputManager.resetAllGameActions();
         	
         }
+        
+
 
        /**
         *  Here, we need to add in other key pressed statements, such as e (attach to wall), space (jump with effects of gravity), etc....

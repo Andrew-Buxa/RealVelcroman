@@ -124,7 +124,7 @@ public class ResourceManager {
         ArrayList lines = new ArrayList();
         int width = 0;
         int height = 0;
-
+        String backgroundFileName = "Background.png";
         // read every line in the text file into the list
         BufferedReader reader = new BufferedReader(
             new FileReader(filename));
@@ -138,14 +138,19 @@ public class ResourceManager {
 
             // add every line except for comments
             if (!line.startsWith("#")) {
+            	if (line.startsWith("+")) {
+            	backgroundFileName = line.substring(1);	
+            	} else {
                 lines.add(line);
                 width = Math.max(width, line.length());
+	            }
             }
         }
 
         // parse the lines to create a TileEngine
         height = lines.size();
         TileMap newMap = new TileMap(width, height);
+        newMap.setBackground(loadImage(backgroundFileName));
         for (int y=0; y<height; y++) {
             String line = (String)lines.get(y);
             for (int x=0; x<line.length(); x++) {
@@ -172,15 +177,20 @@ public class ResourceManager {
                 }
                 else if (ch == '2') {
                     addSprite(newMap, flySprite, x, y);
+                } else if (ch == 'p') {
+                	Sprite player = (Sprite)playerSprite.clone();
+                	player.setX(TileMapRenderer.tilesToPixels(x));
+                	player.setY(TileMapRenderer.tilesToPixels(y));
+                	newMap.setPlayer(player);
                 }
             }
         }
 
         // add the player to the map
-        Sprite player = (Sprite)playerSprite.clone();
-        player.setX(TileMapRenderer.tilesToPixels(3));
-        player.setY(0);
-        newMap.setPlayer(player);
+//        Sprite player = (Sprite)playerSprite.clone();
+//        player.setX(TileMapRenderer.tilesToPixels(3));
+//        player.setY(0);
+//        newMap.setPlayer(player);
 
         return newMap;
     }
@@ -238,12 +248,12 @@ public class ResourceManager {
 
         // load left-facing images
         images[0] = new Image[] {
-            loadImage("player1.png"),
-            loadImage("player2.png"),
-            loadImage("player3.png"),
-            loadImage("fly1.png"),
-            loadImage("fly2.png"),
-            loadImage("fly3.png"),
+        	loadImage("Velcroman_Walk_000.png"),
+        	loadImage("Velcroman_Walk_001.png"),
+        	loadImage("Velcroman_Walk_002.png"),
+            loadImage("Shoegull_000.png"),
+            loadImage("Shoegull_001.png"),
+            loadImage("Shoegull_002.png"),
             loadImage("grub1.png"),
             loadImage("grub2.png"),
         };
@@ -287,12 +297,58 @@ public class ResourceManager {
         Image player2, Image player3)
     {
         Animation anim = new Animation();
-        anim.addFrame(player1, 250);
-        anim.addFrame(player2, 150);
-        anim.addFrame(player1, 150);
-        anim.addFrame(player2, 150);
-        anim.addFrame(player3, 200);
-        anim.addFrame(player2, 150);
+        anim.addFrame(loadImage("Velcroman_Walk_000.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_001.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_002.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_003.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_004.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_005.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_006.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_007.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_008.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_009.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_010.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_011.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_012.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_013.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_014.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_015.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_016.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_017.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_018.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_019.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_020.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_021.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_022.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_023.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_024.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_025.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_024.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_023.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_022.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_021.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_020.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_019.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_018.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_017.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_016.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_015.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_014.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_013.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_012.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_011.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_010.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_009.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_008.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_007.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_006.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_005.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_004.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_003.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_002.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_001.png"),20);
+        anim.addFrame(loadImage("Velcroman_Walk_000.png"),20);
+        
         return anim;
     }
 
@@ -301,10 +357,31 @@ public class ResourceManager {
         Image img3)
     {
         Animation anim = new Animation();
-        anim.addFrame(img1, 50);
-        anim.addFrame(img2, 50);
-        anim.addFrame(img3, 50);
-        anim.addFrame(img2, 50);
+        anim.addFrame(loadImage("Shoegull_000.png"),20);
+        anim.addFrame(loadImage("Shoegull_001.png"),20);
+        anim.addFrame(loadImage("Shoegull_002.png"),20);
+        anim.addFrame(loadImage("Shoegull_003.png"),20);
+        anim.addFrame(loadImage("Shoegull_004.png"),20);
+        anim.addFrame(loadImage("Shoegull_005.png"),20);
+        anim.addFrame(loadImage("Shoegull_006.png"),20);
+        anim.addFrame(loadImage("Shoegull_007.png"),20);
+        anim.addFrame(loadImage("Shoegull_008.png"),20);
+        anim.addFrame(loadImage("Shoegull_009.png"),20);
+        anim.addFrame(loadImage("Shoegull_010.png"),20);
+        anim.addFrame(loadImage("Shoegull_011.png"),20);
+        anim.addFrame(loadImage("Shoegull_012.png"),20);
+        anim.addFrame(loadImage("Shoegull_013.png"),20);
+        anim.addFrame(loadImage("Shoegull_014.png"),20);
+        anim.addFrame(loadImage("Shoegull_015.png"),20);
+        anim.addFrame(loadImage("Shoegull_016.png"),20);
+        anim.addFrame(loadImage("Shoegull_017.png"),20);
+        anim.addFrame(loadImage("Shoegull_018.png"),20);
+        anim.addFrame(loadImage("Shoegull_019.png"),20);
+        anim.addFrame(loadImage("Shoegull_020.png"),20);
+        anim.addFrame(loadImage("Shoegull_021.png"),20);
+        anim.addFrame(loadImage("Shoegull_022.png"),20);
+        anim.addFrame(loadImage("Shoegull_023.png"),20);
+        anim.addFrame(loadImage("Shoegull_024.png"),20);
         return anim;
     }
 

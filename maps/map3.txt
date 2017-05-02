@@ -7,12 +7,16 @@
 #	C		Velcro Tile (V)
 #	D		Box (B)
 #	E		Spikes (S)
+#	F		Velcro Toggle
+#	G		Sand 
 #   o       Star
 #   !       Music Note
 #   *       Goal
 #   1       Shoe Snake
 #   2       Shoe Snail
-# 5 spaces to have a 2 space gap to jump through
+#   3       ShoeGull
+#   4       BrickFlop
++background3.png
 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 BBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                                                                               B
                        2           C                                                                               B
