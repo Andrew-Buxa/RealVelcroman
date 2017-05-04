@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
 import com.brackeen.javagamebook.graphics.*;
@@ -66,6 +67,9 @@ public class GameManager extends GameCore {
 	private boolean paused;
 
 	private JPanel pauseMenu;
+	private JButton music;
+	
+	private Sequence sequence;
 
 
     public void init() {
@@ -100,8 +104,8 @@ public class GameManager extends GameCore {
 
         // start music
         midiPlayer = new MidiPlayer();
-        Sequence sequence =
-            midiPlayer.getSequence("sounds/DISCO.MID");
+        sequence =
+            midiPlayer.getSequence("sounds/REGGAE.MID");
         midiPlayer.play(sequence, true);
         toggleDrumPlayback();
         
@@ -109,6 +113,7 @@ public class GameManager extends GameCore {
         pauseMenu = new JPanel();
         
         JButton resume = new JButton("Resume");
+        resume.setFocusable(false);
         resume.addActionListener(new ActionListener() {
 
 			@Override
@@ -119,6 +124,7 @@ public class GameManager extends GameCore {
         	
         });
         JButton exit = new JButton("Exit");
+        exit.setFocusable(false);
         exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -128,29 +134,52 @@ public class GameManager extends GameCore {
         });
         
         JButton rules = new JButton("Rules");
+        rules.setFocusable(false);
         rules.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(pauseMenu, "Move around and stuff");
+				JOptionPane.showMessageDialog(pauseMenu, "There are no rules other than O'Doyle Rules");
 				
 			}
         	
         });
+        music = new JButton("Music Off");
+        music.setFocusable(false);
+        music.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (music.getText().equals("Music On")) {
+					music.setText("Music Off");
+				}else if (music.getText().equals("Music Off")) {
+					music.setText("Music On");
+				}
+				
+				
+				
+			}
+        	
+        });
+        
         JButton options = new JButton("Options");
+        options.setFocusable(false);
         options.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				JOptionPane.showMessageDialog(pauseMenu, "Hello");
+				
+				
 			}
         	
         });
+        
         pauseMenu.add(resume);
         pauseMenu.add(rules);
-        pauseMenu.add(options);
+        pauseMenu.add(music);
         pauseMenu.add(exit);
         
         Border border = 
@@ -158,12 +187,6 @@ public class GameManager extends GameCore {
         pauseMenu.setBorder(border);
         pauseMenu.setVisible(false);
         pauseMenu.setSize(pauseMenu.getPreferredSize());
-        
-        
-        
-        // Center the pause menu
-//        pauseMenu.setLocation((screen.getWidth() - pauseMenu.getWidth()) / 2,
-//        		(screen.getHeight() - pauseMenu.getHeight()) / 2);
         
         screen.getFullScreenWindow().getLayeredPane().add(pauseMenu,JLayeredPane.MODAL_LAYER);
         
@@ -214,7 +237,7 @@ public class GameManager extends GameCore {
         	//inputManager.resetAllGameActions();
         	
         }
-        
+       
 
 
        /**
@@ -233,6 +256,7 @@ public class GameManager extends GameCore {
 	            if (jump.isPressed()) {
 	                player.jump(false);
 	            }
+	            
 	            player.setVelocityX(velocityX);
 	        }
         }
