@@ -46,6 +46,13 @@ public class GameManager extends GameCore {
     private ResourceManager resourceManager;
     private Sound prizeSound;
     private Sound boopSound;
+    private Sound velcroClimb;
+    private Sound velcroClimb1;
+    private Sound velcroClimb2;
+    private Sound velcroWalk;
+    private Sound shoeShot;
+    private Sound shoeSnakeHiss;
+    private Sound velcroWhip;
     private InputManager inputManager;
     private TileMapRenderer renderer;
 
@@ -81,13 +88,20 @@ public class GameManager extends GameCore {
 
         // load sounds
         soundManager = new SoundManager(PLAYBACK_FORMAT);
-        prizeSound = soundManager.getSound("sounds/prize.wav");
-        boopSound = soundManager.getSound("sounds/boop2.wav");
+        //prizeSound = soundManager.getSound("sounds/prize.wav");
+        //boopSound = soundManager.getSound("sounds/damageGrunt.wav");
+//        velcroClimb = soundManager.getSound("sounds/velcroClimb.wav");
+//        velcroClimb1 = soundManager.getSound("sounds/velcroClimb_01.wav");
+//        velcroClimb2 = soundManager.getSound("sounds/velcroClimb_02.wav");
+//        shoeShot = soundManager.getSound("sounds/shoeShot.wav");
+//        shoeSnakeHiss = soundManager.getSound("sounds/shoeSnakeHiss.wav");
+//        velcroWalk = soundManager.getSound("sounds/velcroWalk.wav");
+//        velcroWhip = soundManager.getSound("sounds/VelcroWhip.wav");
 
         // start music
         midiPlayer = new MidiPlayer();
         Sequence sequence =
-            midiPlayer.getSequence("sounds/music.midi");
+            midiPlayer.getSequence("sounds/DISCO.MID");
         midiPlayer.play(sequence, true);
         toggleDrumPlayback();
         
@@ -500,7 +514,7 @@ public class GameManager extends GameCore {
     */
     public void acquirePowerUp(PowerUp powerUp) {
         // remove it from the map
-        map.removeSprite(powerUp);
+        map = resourceManager.loadNextMap();
 
         if (powerUp instanceof PowerUp.Star) {
             // do something here, like give the player points

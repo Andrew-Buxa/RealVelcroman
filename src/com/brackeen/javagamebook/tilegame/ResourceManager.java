@@ -254,8 +254,8 @@ public class ResourceManager {
             loadImage("Shoegull_000.png"),
             loadImage("Shoegull_001.png"),
             loadImage("Shoegull_002.png"),
-            loadImage("grub1.png"),
-            loadImage("grub2.png"),
+            loadImage("ShoeSnail_000.png"),
+            loadImage("ShoeSnail_001.png"),
         };
 
         images[1] = new Image[images[0].length];
@@ -370,26 +370,37 @@ public class ResourceManager {
         anim.addFrame(loadImage("Shoegull_010.png"),20);
         anim.addFrame(loadImage("Shoegull_011.png"),20);
         anim.addFrame(loadImage("Shoegull_012.png"),20);
-        anim.addFrame(loadImage("Shoegull_013.png"),20);
-        anim.addFrame(loadImage("Shoegull_014.png"),20);
-        anim.addFrame(loadImage("Shoegull_015.png"),20);
-        anim.addFrame(loadImage("Shoegull_016.png"),20);
-        anim.addFrame(loadImage("Shoegull_017.png"),20);
-        anim.addFrame(loadImage("Shoegull_018.png"),20);
-        anim.addFrame(loadImage("Shoegull_019.png"),20);
-        anim.addFrame(loadImage("Shoegull_020.png"),20);
-        anim.addFrame(loadImage("Shoegull_021.png"),20);
-        anim.addFrame(loadImage("Shoegull_022.png"),20);
-        anim.addFrame(loadImage("Shoegull_023.png"),20);
-        anim.addFrame(loadImage("Shoegull_024.png"),20);
+        anim.addFrame(loadImage("Shoegull_011.png"),20);
+        anim.addFrame(loadImage("Shoegull_010.png"),20);
+        anim.addFrame(loadImage("Shoegull_009.png"),20);
+        anim.addFrame(loadImage("Shoegull_008.png"),20);
+        anim.addFrame(loadImage("Shoegull_007.png"),20);
+        anim.addFrame(loadImage("Shoegull_006.png"),20);
+        anim.addFrame(loadImage("Shoegull_005.png"),20);
+        anim.addFrame(loadImage("Shoegull_004.png"),20);
+        anim.addFrame(loadImage("Shoegull_003.png"),20);
+        anim.addFrame(loadImage("Shoegull_002.png"),20);
+        anim.addFrame(loadImage("Shoegull_001.png"),20);
+        anim.addFrame(loadImage("Shoegull_000.png"),20);
         return anim;
     }
 
 
     private Animation createGrubAnim(Image img1, Image img2) {
         Animation anim = new Animation();
-        anim.addFrame(img1, 250);
-        anim.addFrame(img2, 250);
+        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_006.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
+        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
         return anim;
     }
 

@@ -1,6 +1,6 @@
-# Map file for tile-based game
-# (Lines that start with '#' are comments)
-# The tiles are:
+# MGp file for tile-bGseV gGme
+# (Lines thGt stGrt with '#' Gre Eomments)
+# The tiles Gre:
 #   (Space) Empty tile
 #   A		Ground Tile (G)
 #	B		Wall-Tile Non-attachable (WN)
@@ -16,28 +16,18 @@
 #   2       Shoe Snail
 #   3       ShoeGull
 #   4       BrickFlop
-+background3.png
-BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-BBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                                                                               B
-                       2           C                                                                               B
-                                                                                                                   B
-         CC                        C                                                                               B
-         C                         C                                                                               B
-         C    B                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-              B                                     B                                                              B
-              B                    B                B                                                              B
-              B   1     1     1    B                BBB    CC          BBBBBBBBBBBBBBBB                            B
-   BBBBBV     BBBBBBBBBBBBBBBBBBBBBB                B      BBB                        BBBBBBBBBBBBBC               B
-        C                                                  BBBB                           BBBBBBBBBC               B
-        C                                                  BBBBB                                   C               B
-                                                         BBBBBBBB                2        1        C   1       o   B
-                    BBBBBBB          CB             BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-                          C          CB             B                B                B                 B          B
-             B            C          CB             B       B        B       C        B         B       B          B
-                          C          CB             B       B        B       C        B         B       B          B
-     1        1       1       EEEEEE CB  D                  B        B       C        B         B       B          B
-EEEEEEEEEEEEBBBBBBBBBBBBBBBBBBBBBBBBBBB                     B                C                  B             o    B
-BBBBBBBBBBBB                          BBBBBB        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-               D                                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB	
-             EEEEEEEEEEEEEEEEEEEEEEE                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
++background2.png                                                              
+F                                               4
+F          3      3      3    3     3     3                   *
+F      CC     CC     CC    CC    CC   CC    CC   CC     FFFFFFFFFFFFFFFFFFFFFF
+F              4    3    3    
+F  CC             C   C   C
+F             B   C   C   C
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+B                                                                          B
+B                                   CC                                     B
+B            4         4      CC                                           B
+B        BB             BB                                                 B
+B     C             C                                                      B
+B p   CEEEEEEE      CEEEEEEEEEEEEEEEEEEEEEEEEEEEE                          B
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

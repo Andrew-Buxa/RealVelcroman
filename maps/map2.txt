@@ -1,6 +1,6 @@
-# MGp file for tile-bGseV gGme
-# (Lines thGt stGrt with '#' Gre Eomments)
-# The tiles Gre:
+# Map file for tile-based game
+# (Lines that start with '#' are comments)
+# The tiles are:
 #   (Space) Empty tile
 #   A		Ground Tile (G)
 #	B		Wall-Tile Non-attachable (WN)
@@ -16,18 +16,35 @@
 #   2       Shoe Snail
 #   3       ShoeGull
 #   4       BrickFlop
-+background2.png                                                              
-F                                               4
-F          3      3      3    3     3     3                   *
-F      CC     CC     CC    CC    CC   CC    CC   CC     FFFFFFFFFFFFFFFFFFFFFF
-F              4    3    3    
-F  CC             C   C   C
-F             B   C   C   C
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-B                                                                          B
-B                                   CC                                     B
-B            4         4      CC                                           B
-B        BB             BB                                                 B
-B     C             C                                                      B
-B     CEEEEEEE      CEEEEEEEEEEEEEEEEEEEEEEEEEEEE                          B
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
++background.png
+							
+CCCCCCCCCCCCCCCBBBBBBBBBBBBBBCCCCCCCCCCCCCBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+C                           BC                                               B 
+C                           BC                                               B  
+C                           BC                                               B  
+C                           BC          B                                    B 
+C                           BC          B                                    B
+C                           BC          B                                    B
+C                           BC          B                                    B
+C              D      1          1      B                                    B
+C              AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA                          B
+C                                                                            B
+C                                                                            B
+C     CC              CC            CC                                       B
+C     CC              CC     BB     CC                   *                   B
+C                            BB                         BBBBBBBBBBBBBBBBBBBBBB
+C            BB              BB                         BBBBBBBBBBBBBBBBBBBBBB  
+C                            BB                         BBBBBBBBBBBBBBBBBBBBBB
+C                            BB           DD            BBBBBBBBBBBBBBBBBBBBBB
+CEEEEEEEEEEEEEEEEEEEEEEEEEEEEBB           DD            BBBBBBBBBBBBBBBBBBBBBB
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACC   AAAAAAAAAAAAAAAAAAAAAAAA
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCC   BBBBBBBBBBBBBBBBBBBBBBBB                                                                
+B                                                CC              BBBBBBBBBBBBB
+B                                                CC              BBBBBBBBBBBBB
+B                                                CC              BBBBBBBBBBBBB
+B                                                CC              BBBBBBBBBBBBB
+B                                                CC              BBBBBBBBBBBBB
+B                       DD                       CC              BBBBBBBBBBBBB
+B               DD      DD                       CC              BBBBBBBBBBBBB
+B       DD 1    DDEEEEEEDD    1   1   1   1   1  BB            p BBBBBBBBBBBBB
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

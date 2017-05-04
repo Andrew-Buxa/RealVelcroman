@@ -39,12 +39,12 @@ C                            BB           DD            BBBBBBBBBBBBBBBBBBBBBB
 CEEEEEEEEEEEEEEEEEEEEEEEEEEEEBB           DD            BBBBBBBBBBBBBBBBBBBBBB
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFF   AAAAAAAAAAAAAAAAAAAAAAAA
 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBFF   BBBBBBBBBBBBBBBBBBBBBBBB                                                                
-B                                                FF              BBBBBBBBBBBBB
-B                                                FF              BBBBBBBBBBBBB
-B                                                FF              BBBBBBBBBBBBB
-B                                                FF              BBBBBBBBBBBBB
-B                                                FF              BBBBBBBBBBBBB
-B                       DD                       FF              BBBBBBBBBBBBB
-B               DD      DD                       FF              BBBBBBBBBBBBB
-B p     DD 1    DDEEEEEEDD    1   1   1   1   1  BB             oBBBBBBBBBBBBB
+B                                                                BBBBBBBBBBBBB
+B                                                                BBBBBBBBBBBBB
+B                                                                BBBBBBBBBBBBB
+B                                                                BBBBBBBBBBBBB
+B                                                                BBBBBBBBBBBBB
+B                       DD                                       BBBBBBBBBBBBB
+B               DD      DD                                       BBBBBBBBBBBBB
+B p     DD      DDEEEEEEDD                       BB             oBBBBBBBBBBBBB
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

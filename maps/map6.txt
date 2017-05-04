@@ -1,0 +1,43 @@
+# Map file for tile-based game
+# (Lines that start with '#' are comments)
+# The tiles are:
+#   (Space) Empty tile
+#   A		Ground Tile (G)
+#	B		Wall-Tile Non-attachable (WN)
+#	C		Velcro Tile (V)
+#	D		Box (B)
+#	E		Spikes (S)
+#	F		Velcro Toggle
+#	G		Sand 
+#   o       Star
+#   !       Music Note
+#   *       Goal
+#   1       Shoe Snake
+#   2       Shoe Snail
+#   3       ShoeGull
+#   4       BrickFlop
++background3.png
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                                                                               B
+                       2           C                                                                               B
+                                                                                                                   B
+         CC                        C                                                                               B
+         C                         C                                                                               B
+         C    B                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+              B                                     B                                                              B
+              B                    B                B                                                              B
+              B   1     1     1    B                BBB    CC     BBBBBBBBBBBBBBBB                                 B
+   BBBBBCBBBB BBBBBBBBBBBBBBBBBBBBBB                       BBB                        BBBBBBBBBBBBBC               B
+        C                                                  BBBB                           BBBBBBBBBC               B
+        C                                                  BBBBB                                   C               B
+                                                         BBBBBBBB                2        1        C   1       p   B
+                    BBBBBBC          CB             BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+                          C          CB             B                B                B                 B          B
+             B            C          CB             B       B        B       C        B         B       B          B
+                          C          CB             B       B        B       C        B         B       B          B
+     1        1       1       EEEEEE CB  D                 CBC       B       C        B        CBC      B          B
+EEEEEEEEEEEEBBBBBBBBBBBBBBBBBBBBBBBBBBB                    BBB               C                 BBB            o    B
+BBBBBBBBBBBB                          BBBBBB        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+               D                                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB	
+ p           EEEEEEEEEEEEEEEEEEEEEEE                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
