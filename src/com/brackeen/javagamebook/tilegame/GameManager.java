@@ -153,8 +153,11 @@ public class GameManager extends GameCore {
 			public void actionPerformed(ActionEvent e) {
 				if (music.getText().equals("Music On")) {
 					music.setText("Music Off");
+					midiPlayer.setPaused(false);
+					
 				}else if (music.getText().equals("Music Off")) {
 					music.setText("Music On");
+					midiPlayer.setPaused(true);
 				}
 				
 				
