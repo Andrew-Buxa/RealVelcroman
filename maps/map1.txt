@@ -46,5 +46,5 @@ B                                                                BBBBBBBBBBBBB
 B                                                                BBBBBBBBBBBBB
 B                       DD                                       BBBBBBBBBBBBB
 B   p           DD      DD                                       BBBBBBBBBBBBB
-B       DD      DDEEEEEEDD    2                  BB             oBBBBBBBBBBBBB
+B       DD      DDssssssDD    2                  BB             oBBBBBBBBBBBBB
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

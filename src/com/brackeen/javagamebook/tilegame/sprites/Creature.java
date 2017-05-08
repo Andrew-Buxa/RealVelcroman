@@ -23,6 +23,7 @@ public abstract class Creature extends Sprite {
     private Animation right;
     private Animation deadLeft;
     private Animation deadRight;
+
     private int state;
     private long stateTime;
 
@@ -39,7 +40,8 @@ public abstract class Creature extends Sprite {
         this.deadRight = deadRight;
         state = STATE_NORMAL;
     }
-
+    
+  
 
     public Object clone() {
         // use reflection to create the correct subclass
@@ -171,6 +173,7 @@ public abstract class Creature extends Sprite {
         if (state == STATE_DYING && stateTime >= DIE_TIME) {
             setState(STATE_DEAD);
         }
+        
     }
 
 }

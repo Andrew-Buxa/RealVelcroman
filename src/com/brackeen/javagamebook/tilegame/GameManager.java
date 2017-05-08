@@ -541,10 +541,11 @@ public class GameManager extends GameCore {
     */
     public void acquirePowerUp(PowerUp powerUp) {
         // remove it from the map
-        map = resourceManager.loadNextMap();
+    	
 
         if (powerUp instanceof PowerUp.Star) {
             // do something here, like give the player points
+        	map = resourceManager.loadNextMap();
             soundManager.play(prizeSound);
         }
         else if (powerUp instanceof PowerUp.Music) {

@@ -30,6 +30,7 @@ public class ResourceManager {
     private Sprite shoeGullSprite;
     private Sprite shoeSnakeSprite;
     private Sprite brickFlopSprite;
+    private Sprite spikeSprite;
 
     /**
         Creates a new ResourceManager with the specified
@@ -53,12 +54,14 @@ public class ResourceManager {
 
 
     public Image getMirrorImage(Image image) {
-        return getScaledImage(image, -1, 1);
+        return getScaledImage(image, 1, 1);
+        // -1 , 1
     }
 
 
     public Image getFlippedImage(Image image) {
-        return getScaledImage(image, 1, -1);
+        return getScaledImage(image, 1, 1);
+        // 1 , -1
     }
 
 
@@ -186,6 +189,9 @@ public class ResourceManager {
                 else if (ch == '4') { // Brick Flop
                 	addSprite(newMap, brickFlopSprite, x, y);
                 } 
+                else if (ch == 's') {
+                	addSprite(newMap, spikeSprite, x, y);
+                }
                 else if (ch == 'l') { // Lenny
                 	
                 } 
@@ -260,14 +266,15 @@ public class ResourceManager {
 
         // load left-facing images
         images[0] = new Image[] {
-        	getFlippedImage(loadImage("Velcroman_Walk_000.png")),
-        	getFlippedImage(loadImage("Velcroman_Walk_001.png")),
-			getFlippedImage(loadImage("Velcroman_Walk_002.png")),
+        	getFlippedImage(loadImage("Velcroman_Idle_000.png")),
+        	getFlippedImage(loadImage("Velcroman_Idle_001.png")),
+			getFlippedImage(loadImage("Velcroman_Idle_002.png")),
 			getFlippedImage(loadImage("Shoegull_000.png")),
 			getFlippedImage(loadImage("Shoegull_001.png")),
 			getFlippedImage(loadImage("Shoegull_002.png")),
 			getFlippedImage(loadImage("ShoeSnail_000.png")),
 			getFlippedImage(loadImage("ShoeSnail_001.png")),
+			loadImage("spike.png")
         };
 
         images[1] = new Image[images[0].length];
@@ -286,6 +293,8 @@ public class ResourceManager {
         Animation[] playerAnim = new Animation[4];
         Animation[] flyAnim = new Animation[4];
         Animation[] grubAnim = new Animation[4];
+        Animation[] spikeAnim = new Animation[4];
+        
         for (int i=0; i<4; i++) {
             playerAnim[i] = createPlayerAnim(
                 images[i][0], images[i][1], images[i][2]);
@@ -293,6 +302,7 @@ public class ResourceManager {
                 images[i][3], images[i][4], images[i][5]);
             grubAnim[i] = createGrubAnim(
                 images[i][6], images[i][7]);
+            spikeAnim[i] = createSpikeAnim(images[i][8]);
         }
 
         // create creature sprites
@@ -302,9 +312,15 @@ public class ResourceManager {
             flyAnim[2], flyAnim[3]);
         snailSprite = new Grub(grubAnim[0], grubAnim[1],
             grubAnim[2], grubAnim[3]);
+        spikeSprite = new Spike(spikeAnim[0],spikeAnim[0],spikeAnim[0],spikeAnim[0]);
     }
 
-
+    private Animation createSpikeAnim(Image image) {
+    	Animation anim = new Animation();
+    	anim.addFrame(loadImage("spike.png"), 20);
+    	
+    	return anim;
+    }
     private Animation createPlayerAnim(Image player1,
         Image player2, Image player3)
     {
@@ -418,19 +434,8 @@ public class ResourceManager {
     
     private Animation createSnakeAnim(Image img1, Image img2) {
         Animation anim = new Animation();
-        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_006.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
+        anim.addFrame(loadImage("shoestring_snake.png"), 20);
+        
         return anim;
     }
 
