@@ -56,5 +56,7 @@ public abstract class PowerUp extends Sprite {
             super(anim);
         }
     }
+    
+
 
 }

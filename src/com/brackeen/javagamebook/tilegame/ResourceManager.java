@@ -17,9 +17,10 @@ import com.brackeen.javagamebook.tilegame.sprites.*;
 */
 public class ResourceManager {
 
-    private ArrayList tiles;
+    private ArrayList<Tiletype> tiles;
     private int currentMap;
     private GraphicsConfiguration gc;
+    private ClassLoader cl;
 
     // host sprites used for cloning
     private Sprite playerSprite;
@@ -31,12 +32,13 @@ public class ResourceManager {
     private Sprite shoeSnakeSprite;
     private Sprite brickFlopSprite;
     private Sprite spikeSprite;
+    private Sprite winShoe;
 
     /**
         Creates a new ResourceManager with the specified
         GraphicsConfiguration.
     */
-    public ResourceManager(GraphicsConfiguration gc) {
+    public ResourceManager(GraphicsConfiguration gc) {    	
         this.gc = gc;
         loadTileImages();
         loadCreatureSprites();
@@ -164,7 +166,7 @@ public class ResourceManager {
                 // check if the char represents tile A, B, C etc.
                 int tile = ch - 'A';
                 if (tile >= 0 && tile < tiles.size()) {
-                    newMap.setTile(x, y, (Image)tiles.get(tile));
+                    newMap.setTile(x, y, tiles.get(tile));
                 }
 
                 // check if the char represents a sprite
@@ -192,8 +194,8 @@ public class ResourceManager {
                 else if (ch == 's') {
                 	addSprite(newMap, spikeSprite, x, y);
                 }
-                else if (ch == 'l') { // Lenny
-                	
+                else if (ch == 'l') { // Thw win shoe
+                	addSprite(newMap, winShoe, x ,y);
                 } 
                 else if (ch == 'p') { // Player
                 	Sprite player = (Sprite)playerSprite.clone();
@@ -244,9 +246,10 @@ public class ResourceManager {
 
 
     public void loadTileImages() {
-        // keep looking for tile A,B,C, etc. this makes it
+    	// keep looking for tile A,B,C, etc. this makes it
         // easy to drop new tiles in the images/ directory
-        tiles = new ArrayList();
+    	
+        tiles = new ArrayList<Tiletype>();
         char ch = 'A';
         while (true) {
             String name = "tile_" + ch + ".png";
@@ -254,27 +257,51 @@ public class ResourceManager {
             if (!file.exists()) {
                 break;
             }
-            tiles.add(loadImage(name));
+            if(name.equals("tile_C.png")){
+            	tiles.add(new Tiletype(true, loadImage(name)));
+            }
+            else{
+            	tiles.add(new Tiletype(false, loadImage(name)));
+            }
             ch++;
         }
     }
-
+    public ArrayList<Tiletype> getTileType(){
+    	return tiles;
+    }
 
     public void loadCreatureSprites() {
 
         Image[][] images = new Image[4][];
 
         // load left-facing images
-        images[0] = new Image[] {
-        	getFlippedImage(loadImage("Velcroman_Idle_000.png")),
-        	getFlippedImage(loadImage("Velcroman_Idle_001.png")),
-			getFlippedImage(loadImage("Velcroman_Idle_002.png")),
-			getFlippedImage(loadImage("Shoegull_000.png")),
-			getFlippedImage(loadImage("Shoegull_001.png")),
-			getFlippedImage(loadImage("Shoegull_002.png")),
-			getFlippedImage(loadImage("ShoeSnail_000.png")),
-			getFlippedImage(loadImage("ShoeSnail_001.png")),
-			loadImage("spike.png")
+        String idle = "images/Velcroman_Idle_000.png";
+        String idle2 = "images/Velcroman_Idle_001.png";
+        String idle3 = "images/Velcroman_Idle_002.png";
+        String shoeGull0 = "images/Velcroman_Idle_000.png";
+        String shoeGull1 = "images/Velcroman_Idle_001.png";
+        String shoeGull2 = "images/Velcroman_Idle_001.png";
+        String shoeSnail0 = "images/Velcroman_Idle_000.png";
+        String shoeSnail1 = "images/Velcroman_Idle_001.png";
+        String shoeSnail2 = "images/Velcroman_Idle_002.png";
+        String shoeSnail3 = "images/Velcroman_Idle_003.png";
+        String shoeSnail4 = "images/Velcroman_Idle_004.png";
+        String shoeSnail5 = "images/Velcroman_Idle_005.png";
+        String shoeSnail6 = "images/Velcroman_Idle_006.png";
+		images[0] = new Image[] {
+        	loadImage("images/Velcroman_Idle_000.png/"),
+        	loadImage("Velcroman_Idle_001.png"),
+			loadImage("Velcroman_Idle_002.png"),
+			loadImage("Shoegull_000.png"),
+			loadImage("Shoegull_001.png"),
+			loadImage("Shoegull_002.png"),
+			loadImage("ShoeSnail_000.png"),
+			loadImage("ShoeSnail_001.png"),
+			loadImage("ShoeSnail_002.png"),
+			loadImage("ShoeSnail_003.png"),
+			loadImage("ShoeSnail_004.png"),
+			loadImage("ShoeSnail_005.png"),
+			loadImage("ShoeSnail_006.png"),
         };
 
         images[1] = new Image[images[0].length];
@@ -282,7 +309,7 @@ public class ResourceManager {
         images[3] = new Image[images[0].length];
         for (int i=0; i<images[0].length; i++) {
             // right-facing images
-            images[1][i] = images[0][i];
+            images[1][i] = getMirrorImage(images[0][i]);
             // left-facing "dead" images
             images[2][i] = getFlippedImage(images[0][i]);
             // right-facing "dead" images
@@ -300,9 +327,9 @@ public class ResourceManager {
                 images[i][0], images[i][1], images[i][2]);
             flyAnim[i] = createFlyAnim(
                 images[i][3], images[i][4], images[i][5]);
-            grubAnim[i] = createGrubAnim(
-                images[i][6], images[i][7]);
-            spikeAnim[i] = createSpikeAnim(images[i][8]);
+            grubAnim[i] = createShoeSnailAnim(
+                images[i][6], images[i][7], images[i][8], images[i][9], images[i][10], images[i][11], images[i][12]);
+           
         }
 
         // create creature sprites
@@ -312,7 +339,7 @@ public class ResourceManager {
             flyAnim[2], flyAnim[3]);
         snailSprite = new Grub(grubAnim[0], grubAnim[1],
             grubAnim[2], grubAnim[3]);
-        spikeSprite = new Spike(spikeAnim[0],spikeAnim[0],spikeAnim[0],spikeAnim[0]);
+        
     }
 
     private Animation createSpikeAnim(Image image) {
@@ -414,21 +441,21 @@ public class ResourceManager {
     }
 
 
-    private Animation createGrubAnim(Image img1, Image img2) {
+    private Animation createShoeSnailAnim(Image img1, Image img2, Image img3, Image img4, Image img5, Image img6, Image img7) {
         Animation anim = new Animation();
-        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_006.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_005.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_004.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_003.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_002.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_001.png"), 20);
-        anim.addFrame(loadImage("ShoeSnail_000.png"), 20);
+        anim.addFrame(img1, 20);
+        anim.addFrame(img2, 20);
+        anim.addFrame(img3, 20);
+        anim.addFrame(img4, 20);
+        anim.addFrame(img5, 20);
+        anim.addFrame(img6, 20);
+        anim.addFrame(img7, 20);
+        anim.addFrame(img6, 20);
+        anim.addFrame(img5, 20);
+        anim.addFrame(img4, 20);
+        anim.addFrame(img3, 20);
+        anim.addFrame(img2, 20);
+        anim.addFrame(img1, 20);
         return anim;
     }
     
@@ -451,19 +478,31 @@ public class ResourceManager {
 
         // create "star" sprite
         anim = new Animation();
-        anim.addFrame(loadImage("star1.png"), 100);
-        anim.addFrame(loadImage("star2.png"), 100);
-        anim.addFrame(loadImage("star3.png"), 100);
-        anim.addFrame(loadImage("star4.png"), 100);
+        anim.addFrame(loadImage("key_1.png"), 100);
+        anim.addFrame(loadImage("key_2.png"), 100);
+        anim.addFrame(loadImage("key_3.png"), 100);
+        anim.addFrame(loadImage("key_4.png"), 100);
+        anim.addFrame(loadImage("key_5.png"), 100);
+        anim.addFrame(loadImage("key_4.png"), 100);
+        anim.addFrame(loadImage("key_3.png"), 100);
+        anim.addFrame(loadImage("key_2.png"), 100);
+        anim.addFrame(loadImage("key_1.png"), 100);
         coinSprite = new PowerUp.Star(anim);
 
         // create "music" sprite
         anim = new Animation();
-        anim.addFrame(loadImage("music1.png"), 150);
-        anim.addFrame(loadImage("music2.png"), 150);
-        anim.addFrame(loadImage("music3.png"), 150);
-        anim.addFrame(loadImage("music2.png"), 150);
+        anim.addFrame(loadImage("shoe.png"),20);
+        anim.addFrame(loadImage("shoe1.png"),20);
+        anim.addFrame(loadImage("shoe2.png"),20);
+        anim.addFrame(loadImage("shoe3.png"),20);
+        anim.addFrame(loadImage("shoe2.png"),20);
+        anim.addFrame(loadImage("shoe1.png"),20);
+        anim.addFrame(loadImage("shoe.png"),20);
         musicSprite = new PowerUp.Music(anim);
+        
+       
+        
+        
     }
 
 }

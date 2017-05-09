@@ -28,16 +28,18 @@ BBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                                            
               B                    B                B                                                              B
               B   1     1     1    B                BBB    CC     BBBBBBBBBBBBBBBB                                 B
    BBBBBCBBBB BBBBBBBBBBBBBBBBBBBBBB                B      BBB                        BBBBBBBBBBBBBC               B
-        C                                           B      BBBB                           BBBBBBBBBC               B
-        C                                           B      BBBBB                                   C               B
-                         o                          B    BBBBBBBB                2        1        C   1       o   B
-                    BBBBBBC          CB             BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+        C          B                                B      BBBB                           BBBBBBBBBC               B
+        C          B                                B      BBBBB                                   C               B
+                   B     o                          B    BBBBBBBB                2        1        C   1       o   B
+                   BBBBBBBC          CB             BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
                           C          CB             B                B                B                 B          B
-             B            C          CB             B       B        B       C        B         B       B          B
-                          C          CB             B       B        B       C        B         B       B          B
+             B            C          CB             B                B                B                 B          B
+                          C          CB             B                B                B                 B          B
      1        1       1       EEEEEE CB  D                  B        B       C        B         B       B          B
-EEEEEEEEEEEEBBBBBBBBBBBBBBBBBBBBBBBBBBB                     B                C                  B             o    B
-BBBBBBBBBBBB                          BBBBBB        BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-               D                                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB	
- p           EEEEEEEEEEEEEEEEEEEEEEE                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+EEEEEEEEEEEEBBBBBBBBBBBBBBBBBBBBBBBBBBB                     B                C                  B                  B
+BBBBBBBBBBBB                          B                     B                C                  B                  B
+                                      BBBBBB                B                C                  B              o   B
+                                                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+    p          D                                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB	
+             EEEEEEEEEEEEEEEEEEE                    BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG

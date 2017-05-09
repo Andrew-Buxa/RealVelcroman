@@ -23,9 +23,12 @@ public abstract class Creature extends Sprite {
     private Animation right;
     private Animation deadLeft;
     private Animation deadRight;
-
     private int state;
     private long stateTime;
+
+	private boolean isClingingX=false;
+
+	private boolean isClingingY=false;
 
     /**
         Creates a new Creature with the specified Animations.
@@ -40,8 +43,7 @@ public abstract class Creature extends Sprite {
         this.deadRight = deadRight;
         state = STATE_NORMAL;
     }
-    
-  
+
 
     public Object clone() {
         // use reflection to create the correct subclass
@@ -120,7 +122,31 @@ public abstract class Creature extends Sprite {
     public boolean isFlying() {
         return false;
     }
-
+    
+    /**
+     * returns a boolean variable showing whether or not the player is currently clinging to a wall
+     */
+    public boolean getClingingX(){
+    	return isClingingX;
+    }
+    
+    public void setClingX(boolean clinger){
+    	isClingingX=clinger;
+    }
+    
+    /**
+     * Sets the boolean cariable of isClingingX to whatever the paramater is.  Which should determine whether or not the player i
+     * clingign to a wall.
+     * @param clinger
+     */
+    public void setClingY(boolean clinger){
+    	isClingingY=clinger;
+    }
+    
+    public boolean getClingingY(){
+    	return isClingingY;
+    }
+    
 
     /**
         Called before update() if the creature collided with a
@@ -173,7 +199,6 @@ public abstract class Creature extends Sprite {
         if (state == STATE_DYING && stateTime >= DIE_TIME) {
             setState(STATE_DEAD);
         }
-        
     }
 
 }

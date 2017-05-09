@@ -14,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
 import com.brackeen.javagamebook.graphics.*;
@@ -41,6 +40,8 @@ public class GameManager extends GameCore {
     public static final float GRAVITY = 0.002f;
 
     private Point pointCache = new Point();
+    private Point tilePoint;
+    private Point tilePoint2;
     private TileMap map;
     private MidiPlayer midiPlayer;
     private SoundManager soundManager;
@@ -63,13 +64,15 @@ public class GameManager extends GameCore {
     private GameAction pause;
     private GameAction rules;
     private GameAction options;
+    private GameAction cling;
+    private GameAction up;
+    private GameAction down;
+    private Sequence sequence;
 
 	private boolean paused;
 
 	private JPanel pauseMenu;
 	private JButton music;
-	
-	private Sequence sequence;
 
 
     public void init() {
@@ -105,7 +108,7 @@ public class GameManager extends GameCore {
         // start music
         midiPlayer = new MidiPlayer();
         sequence =
-            midiPlayer.getSequence("sounds/REGGAE.MID");
+            midiPlayer.getSequence("sounds/HIP_HOP.MID");
         midiPlayer.play(sequence, true);
         toggleDrumPlayback();
         
@@ -140,7 +143,11 @@ public class GameManager extends GameCore {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(pauseMenu, "There are no rules other than O'Doyle Rules");
+				JOptionPane.showMessageDialog(pauseMenu, "There are no rules other than O'Doyle Rules \n"
+						+ "E: Attach to Velcro Walls \n"
+						+ "->: Move left \n"
+						+ "<-: Move right \n"
+						+ "Space: Jump");
 				
 			}
         	
@@ -192,8 +199,6 @@ public class GameManager extends GameCore {
         pauseMenu.setSize(pauseMenu.getPreferredSize());
         
         screen.getFullScreenWindow().getLayeredPane().add(pauseMenu,JLayeredPane.MODAL_LAYER);
-        
-        
     }
 
 
@@ -212,6 +217,9 @@ public class GameManager extends GameCore {
         moveRight = new GameAction("moveRight");
         jump = new GameAction("jump",
             GameAction.DETECT_INITAL_PRESS_ONLY);
+        cling = new GameAction("cling", GameAction.DETECT_INITAL_PRESS_ONLY);
+        up = new GameAction("up", GameAction.DETECT_INITAL_PRESS_ONLY);
+        down = new GameAction("down", GameAction.DETECT_INITAL_PRESS_ONLY);
 //        exit = new GameAction("exit",
 //            GameAction.DETECT_INITAL_PRESS_ONLY);
         pause = new GameAction("pause", GameAction.DETECT_INITAL_PRESS_ONLY);
@@ -219,53 +227,144 @@ public class GameManager extends GameCore {
         inputManager = new InputManager(
             screen.getFullScreenWindow());
         //inputManager.setCursor(InputManager.INVISIBLE_CURSOR);
-
+        inputManager.mapToKey(cling, KeyEvent.VK_E);
         inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
         inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
         inputManager.mapToKey(jump, KeyEvent.VK_SPACE);
        // inputManager.mapToKey(exit, KeyEvent.VK_ESCAPE);
         inputManager.mapToKey(pause, KeyEvent.VK_ESCAPE);
+        inputManager.mapToKey(up,KeyEvent.VK_UP);
+        inputManager.mapToKey(down,KeyEvent.VK_DOWN);
+
     }
 
 
     private void checkInput(long elapsedTime) {
 
-//        if (pause.isPressed()) {
-//            stop();
-//        }
-        
-        if (pause.isPressed()) {
-        	paused = !paused;
-        	pauseMenu.setVisible(paused);
-        	//inputManager.resetAllGameActions();
-        	
-        }
-       
+    	
+//      if (pause.isPressed()) {
+//          stop();
+//      }
+      
+      if (pause.isPressed()) {
+      	paused = !paused;
+      	pauseMenu.setVisible(paused);
+      	//inputManager.resetAllGameActions();
+      	
+      }
+      
 
 
-       /**
-        *  Here, we need to add in other key pressed statements, such as e (attach to wall), space (jump with effects of gravity), etc....
-        */
-        if (!paused) {
+     /**
+      *  Here, we need to add in other key pressed statements, such as e (attach to wall), space (jump with effects of gravity), etc....
+      */
+      if (!paused) {
 	        Player player = (Player)map.getPlayer();
+	        
+	        //Checks for an X collision
+	        float dx = player.getVelocityX();
+	        float oldX = player.getX();
+	        float newX = oldX + dx * elapsedTime;
+	        
+	        //Checks for Y collision
+	        float dy = player.getVelocityY();
+	        float oldY = player.getY();
+	        float newY = oldY + dy * elapsedTime;
+	        
 	        if (player.isAlive()) {
 	            float velocityX = 0;
+	            float velocityY=player.getVelocityY() +
+	                    GRAVITY * elapsedTime;
+	            
+	            
 	            if (moveLeft.isPressed()) {
-	                velocityX-=player.getMaxSpeed();
+	            	if(player.getClingingX()!=true){
+	            		velocityX-=player.getMaxSpeed();
+	            	}
 	            }
 	            if (moveRight.isPressed()) {
-	                velocityX+=player.getMaxSpeed();
-	            }
-	            if (jump.isPressed()) {
-	                player.jump(false);
+	            	if(player.getClingingX()!=true){
+	            		velocityX+=player.getMaxSpeed();
+	            	}
 	            }
 	            
+	            if(up.isPressed()&&player.getClingingX()){
+	            	velocityY=-player.getMaxSpeed();
+	            	player.setVelocityY(velocityY);
+	            }
+	            
+	            if(down.isPressed()&&player.getClingingX()){
+	            	velocityY=player.getMaxSpeed();
+	            	player.setVelocityY(velocityY);
+	            }
+	            
+	            if (jump.isPressed()) {
+	                player.jump(false);
+	                player.setClingX(false);
+	                player.setClingY(false);
+	            }
+	            if(cling.isPressed()){
+	            	//Check for wall collision
+	            	tilePoint=getTileCollision(player, newX-5, player.getY());
+	            	tilePoint2=getTileCollision(player,newX+player.getWidth()+5, player.getY());
+	            	if(tilePoint==null&&tilePoint2==null){
+	            		//Check for Ceiling collision
+	            		tilePoint=getTileCollision(player, player.getX(), newY-5);
+	            		
+	            		if(tilePoint==null){
+	            			//Do Nothing
+	            		}
+	            		else{
+	            			//Check to see whether collision is with a specific tile or not.
+	            			//If they're clinging to a ceiling
+	            			//do work to figure out of the tile that I am colliding with is velcroable
+	            			//if it is then:
+	            			if(map.getTileVelcro(tilePoint.x, tilePoint.y)){
+	            				velocityX=0;
+	            				velocityY=0;
+	            				player.setVelocityY(velocityY);
+		            			player.setClingY(true);
+		            			player.setClingX(false);
+	            			}
+	            		}
+	            	}
+	            	else if(tilePoint2==null && tilePoint!=null){
+	            		if(map.getTileVelcro(tilePoint.x, tilePoint.y)) {
+	            	}
+	            		velocityX=0;
+      				velocityY=0;
+      				player.setVelocityY(velocityY);
+	            		player.setClingX(true);
+	            		player.setClingY(false);
+	            	}
+	            	
+	            	else if(tilePoint==null && tilePoint2!=null){
+	            		if(map.getTileVelcro(tilePoint2.x, tilePoint2.y)){
+		            		velocityX=0;
+	        				velocityY=0;
+	        				player.setVelocityY(velocityY);
+		            		player.setClingX(true);
+		            		player.setClingY(false);
+	            		}
+	            	}
+	            		
+	            		//If they're clinging to a wall
+	            		//do work to figure out if the tile that I am colliding with is velcro-able
+	            		//if(map.getTileVelcro(tilePoint.x, tilePoint.y)||map.getTileVelcro(tilePoint2.x, tilePoint2.y)){
+	            		//	velocityX=0;
+          			//	velocityY=0;
+          			//	player.setVelocityY(velocityY);
+		            	//	player.setClingX(true);
+		            	//	player.setClingY(false);
+	            		//}
+	            	//}
+	            }
 	            player.setVelocityX(velocityX);
+	           
 	        }
-        }
+      }
 
-    }
-
+  }
 
     public void draw(Graphics2D g) {
         renderer.draw(g, map,
@@ -440,64 +539,71 @@ public class GameManager extends GameCore {
         long elapsedTime)
     {
 
-        // apply gravity
-        if (!creature.isFlying()) {
+        // apply gravity if they're not flying or not clung to a wall or ceiling
+        if (!creature.isFlying()&&creature.getClingingX()==false&&creature.getClingingY()==false) {
             creature.setVelocityY(creature.getVelocityY() +
                 GRAVITY * elapsedTime);
         }
-
-        // change x
-        float dx = creature.getVelocityX();
-        float oldX = creature.getX();
-        float newX = oldX + dx * elapsedTime;
-        Point tile =
-            getTileCollision(creature, newX, creature.getY());
-        if (tile == null) {
-            creature.setX(newX);
-        }
-        else {
-            // line up with the tile boundary
-            if (dx > 0) {
-                creature.setX(
-                    TileMapRenderer.tilesToPixels(tile.x) -
-                    creature.getWidth());
-            }
-            else if (dx < 0) {
-                creature.setX(
-                    TileMapRenderer.tilesToPixels(tile.x + 1));
-            }
-            creature.collideHorizontal();
-        }
-        if (creature instanceof Player) {
-            checkPlayerCollision((Player)creature, false);
+        
+        else if(creature.getClingingX() || creature.getClingingY()){
+        	// Do Nothing
         }
 
-        // change y
-        float dy = creature.getVelocityY();
-        float oldY = creature.getY();
-        float newY = oldY + dy * elapsedTime;
-        tile = getTileCollision(creature, creature.getX(), newY);
-        if (tile == null) {
-            creature.setY(newY);
+        Point tile;
+        // change x if the creature isn't colliding or isn't clinging to a wall 
+        if(creature.getClingingX()==false){
+	        float dx = creature.getVelocityX();
+	        float oldX = creature.getX();
+	        float newX = oldX + dx * elapsedTime;
+	        tile =
+	            getTileCollision(creature, newX, creature.getY());
+	        if (tile == null) {
+	            creature.setX(newX);
+	        }
+	        else {
+	            // line up with the tile boundary
+	            if (dx > 0) {
+	                creature.setX(
+	                    TileMapRenderer.tilesToPixels(tile.x) -
+	                    creature.getWidth());
+	            }
+	            else if (dx < 0) {
+	                creature.setX(
+	                    TileMapRenderer.tilesToPixels(tile.x + 1));
+	            }
+	            creature.collideHorizontal();
+	        }
+	        if (creature instanceof Player) {
+	            checkPlayerCollision((Player)creature, false);
+	        }
         }
-        else {
-            // line up with the tile boundary
-            if (dy > 0) {
-                creature.setY(
-                    TileMapRenderer.tilesToPixels(tile.y) -
-                    creature.getHeight());
-            }
-            else if (dy < 0) {
-                creature.setY(
-                    TileMapRenderer.tilesToPixels(tile.y + 1));
-            }
-            creature.collideVertical();
-        }
-        if (creature instanceof Player) {
-            boolean canKill = (oldY < creature.getY());
-            checkPlayerCollision((Player)creature, canKill);
-        }
-
+        // change y if the user is climbing wall.
+        if(creature.getClingingY()==false){
+	        float dy = creature.getVelocityY();
+	        float oldY = creature.getY();
+	        float newY = oldY + dy * elapsedTime;
+	        tile = getTileCollision(creature, creature.getX(), newY);
+	        if (tile == null) {
+	            creature.setY(newY);
+	        }
+	        else {
+	            // line up with the tile boundary
+	            if (dy > 0) {
+	                creature.setY(
+	                    TileMapRenderer.tilesToPixels(tile.y) -
+	                    creature.getHeight());
+	            }
+	            else if (dy < 0) {
+	                creature.setY(
+	                    TileMapRenderer.tilesToPixels(tile.y + 1));
+	            }
+	            creature.collideVertical();
+	        }
+	        if (creature instanceof Player) {
+	            boolean canKill = (oldY < creature.getY());
+	            checkPlayerCollision((Player)creature, canKill);
+	        }
+    }
     }
 
 
@@ -541,17 +647,16 @@ public class GameManager extends GameCore {
     */
     public void acquirePowerUp(PowerUp powerUp) {
         // remove it from the map
-    	
+        map = resourceManager.loadNextMap();
 
         if (powerUp instanceof PowerUp.Star) {
             // do something here, like give the player points
-        	map = resourceManager.loadNextMap();
             soundManager.play(prizeSound);
         }
         else if (powerUp instanceof PowerUp.Music) {
             // change the music
-            soundManager.play(prizeSound);
-            toggleDrumPlayback();
+        	JOptionPane.showMessageDialog(pauseMenu, "You win!");
+        	System.exit(0);
         }
         else if (powerUp instanceof PowerUp.Goal) {
             // advance to next map
@@ -559,6 +664,7 @@ public class GameManager extends GameCore {
                 new EchoFilter(2000, .7f), false);
             map = resourceManager.loadNextMap();
         }
+       
     }
 
 }

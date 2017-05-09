@@ -16,18 +16,24 @@
 #   2       Shoe Snail
 #   3       ShoeGull
 #   4       BrickFlop
-+background2.png                                                              
-F                                               4
-F          3      3      3    3     3     3                   *
-F      CC     CC     CC    CC    CC   CC    CC   CC     FFFFFFFFFFFFFFFFFFFFFF
-F              4    3    3    
-F  CC             C   C   C
-F             B   C   C   C
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-B                                                                          B
-B                                   CC                                     B
-B            4         4      CC                                           B
-B        BB             BB                                                 B
-B     C             C                                                      B
-B p   CEEEEEEE      CEEEEEEEEEEEEEEEEEEEEEEEEEEEE                          B
++background2.png    
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 
+                                                                                    F                                                         
+F                                               4                                   F
+F          3      3      3    3     3     3                   *                     F
+F      CC     CC     CC    CC    CC   CC    CC   CC     FFFFFFFFFFFFFFFFFFFFFF      F
+F              4    3    3                                                          F
+F                                                                                   F
+F                                                                                   F
+F  CC             C   C   C                                                         F
+F             B   C   C   C                                                         F
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF        F
+B                                                                          B        F
+B                                                                          B   1    F
+B                                                                          B    2   F
+B                                   CC                                     B        F
+B            4         4      CC                                           B  1     F
+B        BB             BB                                                 B        F
+B  p  C             C                                                      B      1 F
+B     CEEEEEEE      CEEEEEEEEEEEEEEEEEEEEEEEEEEEE                          B        F
 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF

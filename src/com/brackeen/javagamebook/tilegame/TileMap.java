@@ -14,7 +14,7 @@ import com.brackeen.javagamebook.graphics.Sprite;
 */
 public class TileMap {
 
-    private Image[][] tiles;
+    private Tiletype[][] tiles;
     private LinkedList sprites;
     private Sprite player;
     private Image background;
@@ -24,7 +24,7 @@ public class TileMap {
         height (in number of tiles) of the map.
     */
     public TileMap(int width, int height) {
-        tiles = new Image[width][height];
+        tiles = new Tiletype[width][height];
         sprites = new LinkedList();
     }
 
@@ -65,15 +65,38 @@ public class TileMap {
             return null;
         }
         else {
-            return tiles[x][y];
+        	if(tiles[x][y]!=null){
+        		return tiles[x][y].getImage();
+        	}
+        	
+        	else{
+        		return null;
+        	}
         }
+    }
+    
+    public boolean getTileVelcro(int x, int y){
+    	if (x < 0 || x >= getWidth() ||
+                y < 0 || y >= getHeight())
+            {
+                return false;
+            }
+            else {
+            	if(tiles[x][y]!=null){
+            		return tiles[x][y].isVelcro();
+            	}
+            	
+            	else{
+            		return false;
+            	}
+            }
     }
 
 
     /**
         Sets the tile at the specified location.
     */
-    public void setTile(int x, int y, Image tile) {
+    public void setTile(int x, int y, Tiletype tile) {
         tiles[x][y] = tile;
     }
 
